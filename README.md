@@ -3,6 +3,7 @@
 ## Features
 
  - Button Rotate
+ - 2x2 Buttons Mode
  - Auto Fire
 
 ### Button Rotate
@@ -27,6 +28,13 @@ Rotate ON
 
 
 ```
+
+### 2x2 Buttons Mode
+
+If DIP1-2 is ON, button 3,4 work as button 1,2.
+This will be useful when you want to have normal button 1, and another one
+with rapid fire enabled.
+
 ### Auto Fire
 
 Button 1, 2, 3 has a DIP switch to enable Auto Fire feature.
@@ -53,6 +61,7 @@ Ext : 0xF9
  B4 IN (w/ext-pull-up) o---o PD3 ( 5) |  E  | (24) PC1 o---o B2 OUT
                                       |  G  | (23) PC0 o---o B1 OUT
                 Rotate o---o PB6 ( 9) |  A  |
+           2x2 Buttons o---o PB7 (10) |     |
      Auto Fire Speed L o---o PD6 (12) |     |
      Auto Fiue Speed H o---o PD7 (13) |  8  | (16) PB2 o---o B3 Auto Fire
           B1 Auto Fire o---o PB0 (14) |  8  | (15) PB1 o---o B2 Auto Fire
@@ -62,7 +71,7 @@ Ext : 0xF9
          /
   1 +---o  o---o Rotate
          /
-  2 +---o  o---o N/C
+  2 +---o  o---o 2x2 Buttons Mode
          /
   3 +---o  o---o Auto Fire Speed H
          /

@@ -6,9 +6,10 @@ int main(int argc, char** argv) {
   // PB[1]  : Button 2 Auto Fire (0: ON, 1: OFF)
   // PB[2]  : Button 3 Auto Fire (0: ON, 1: OFF)
   // PB[6]  : Button Rotate (0: 1234 -> 2341, 1: Bypass)
+  // PB[7]  : 2x2 Buttons Mode (0: 1234 -> 1212, 1: Bypass)
   // PD[7:6]: Auto Fire Speed (b00: 30/s, b01: 20/s, b10: 15/s, b11: 10/s)
-  PORTB |= (_BV(PB0) | _BV(PB1) | _BV(PB2) | _BV(PB6));
-  DDRB &= ~(_BV(PB0) | _BV(PB1) | _BV(PB2) | _BV(PB6));
+  PORTB |= (_BV(PB0) | _BV(PB1) | _BV(PB2) | _BV(PB6) | _BV(PB7));
+  DDRB &= ~(_BV(PB0) | _BV(PB1) | _BV(PB2) | _BV(PB6) | _BV(PB7));
   PORTD |= (_BV(PD6) | _BV(PD7));
   DDRD &= ~(_BV(PD6) | _BV(PD7));
 
@@ -61,6 +62,10 @@ int main(int argc, char** argv) {
       if (!(PINB & 0x04))
         bin |= 0x04;
     }
+
+    // 2x2 Buttons Mode
+    if (!(PINB & _BV(PB7)))
+      bin = ((bin >> 2) | 0x0c) & bin;
 
     // Out low for low, Hi-Z for high.
     uint8_t ddr = (~bin & 0x0f);
