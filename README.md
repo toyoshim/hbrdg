@@ -4,7 +4,7 @@
 
  - Button Rotate
  - 2x2 Buttons Mode
- - Auto Fire
+ - Auto Fire synchronized with an internal timer, or csync signal
 
 ### Button Rotate
 
@@ -55,26 +55,28 @@ Ext : 0xF9
 
 ```
                                       +-----+
+                          /Reset ( 0) |     |
  B1 IN (w/ext-pull-up) o---o PD0 ( 2) |  A  |
  B2 IN (w/ext-pull-up) o---o PD1 ( 3) |  T  | (26) PC3 o---o B4 OUT
  B3 IN (w/ext-pull-up) o---o PD2 ( 4) |  M  | (25) PC2 o---o B3 OUT
  B4 IN (w/ext-pull-up) o---o PD3 ( 5) |  E  | (24) PC1 o---o B2 OUT
-                                      |  G  | (23) PC0 o---o B1 OUT
+              CSYNC IN o---o PD4 ( 6) |  G  | (23) PC0 o---o B1 OUT
                 Rotate o---o PB6 ( 9) |  A  |
            2x2 Buttons o---o PB7 (10) |     |
-     Auto Fire Speed L o---o PD6 (12) |     |
+             Sync Mode o---o PD5 (11) |     |
+     Auto Fire Speed L o---o PD6 (12) |  8  |
      Auto Fiue Speed H o---o PD7 (13) |  8  | (16) PB2 o---o B3 Auto Fire
-          B1 Auto Fire o---o PB0 (14) |  8  | (15) PB1 o---o B2 Auto Fire
+          B1 Auto Fire o---o PB0 (14) |     | (15) PB1 o---o B2 Auto Fire
                                       +-----+
 
  DIP1
          /
   1 +---o  o---o Rotate
-         /
+    |    /
   2 +---o  o---o 2x2 Buttons Mode
-         /
+    |    /
   3 +---o  o---o Auto Fire Speed H
-         /
+    |    /
   4 +---o  o---o Auto Fire Speed L
     |
    ---
@@ -83,14 +85,22 @@ Ext : 0xF9
  DIP2
          /
   1 +---o  o---o Button 1 Auto Fire
-         /
+    |    /
   2 +---o  o---o Button 2 Auto Fire
-         /
+    |    /
   3 +---o  o---o Button 3 Auto Fire
-         /
-  4 +---o  o---o N/C
+    |    /
+  4 +---o  o---o Sync Mode
     |
    ---
    ///
+
+
+Note:
+
+ - You can use ATMEGA 328 instead of 88 by editing the Makefile.
+ - External pull-up registers on B1-4 INs are optional. If you want to use
+   external ones, please undefine USE_INTERNAL_PULLUP in the source file.
+   You may want to do so if internal pull-up registers are weak for you.
 
 ```
