@@ -55,7 +55,7 @@ Ext : 0xF9
 
 ```
                                       +-----+
-                          /Reset ( 0) |     |
+                          /Reset ( 1) |     |
  B1 IN (w/ext-pull-up) o---o PD0 ( 2) |  A  |
  B2 IN (w/ext-pull-up) o---o PD1 ( 3) |  T  | (26) PC3 o---o B4 OUT
  B3 IN (w/ext-pull-up) o---o PD2 ( 4) |  M  | (25) PC2 o---o B3 OUT
