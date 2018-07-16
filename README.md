@@ -45,6 +45,10 @@ Shot-speed can be changed by DIP1-[4:3].
  - ON (H) - OFF(L): 20 shots/sec
  - ON-(H) - ON (L): 30 shots/sec
 
+If DIP2[4] if OFF, shot-speed will be based on CSYNC signal. Otherwise, it will
+be based on an internal timer. CSYNC detection may fail on some sort of PCBs.
+In such case, the internal timer mode will just work.
+
 ## Fuse
 
 High: 0xDF
