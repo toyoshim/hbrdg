@@ -21,3 +21,5 @@ program: $(TARGET).hex
 $(TARGET).elf: $(OBJS)
 	$(CC) $(CFLAGS) -o $@ $^
 
+clean:
+	rm -rf $(TARGET).elf $(TARGET).hex $(OBJS)
